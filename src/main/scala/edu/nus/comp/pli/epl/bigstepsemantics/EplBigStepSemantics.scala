@@ -37,7 +37,7 @@ object EplBigStepSemantics {
     }
     case Bin(Div, exprLeft, exprRight) => (eval(exprLeft), eval(exprRight)) match {
       //add your code
-      case (ResultInt(valueLeft), ResultInt(valueRight)) => ResultInt(valueLeft / valueRight)
+      case (ResultInt(valueLeft), ResultInt(valueRight)) if valueRight != 0 => ResultInt(valueLeft / valueRight)
       case _ => EvaluationError
     }
 
