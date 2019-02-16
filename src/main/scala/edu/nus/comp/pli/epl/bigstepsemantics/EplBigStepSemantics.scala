@@ -89,8 +89,10 @@ object EplBigStepSemantics {
     }
     case IfElse(cond, ifbranch, elsebranch) => (eval(cond),eval(ifbranch),eval(elsebranch)) match {
       //add your code
-      case (ResultBool(true), ifValue, elseValue) => ifValue
-      case (ResultBool(false), ifValue, elseValue) => elseValue
+      case (ResultBool(true), ResultBool(ifValue), ResultBool(_)) => ResultBool(ifValue)
+      case (ResultBool(false), ResultBool(_), ResultBool(elseValue)) => ResultBool(elseValue)
+      case (ResultBool(true), ResultInt(ifValue), ResultInt(_)) => ResultInt(ifValue)
+      case (ResultBool(false), ResultInt(_), ResultInt(elseValue)) => ResultInt(elseValue)
       case _ => EvaluationError
     }
 
