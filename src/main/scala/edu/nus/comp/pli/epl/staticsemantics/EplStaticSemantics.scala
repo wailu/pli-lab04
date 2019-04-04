@@ -90,8 +90,8 @@ object EplStaticSemantics {
     }
     case IfElse(cond, ifbranch, elsebranch) => (inferType(cond), inferType(ifbranch), inferType(elsebranch)) match {
       //add your code
-      case (_, ResultTypeBool, ResultTypeBool) => ResultTypeBool
-      case (_, ResultTypeInt, ResultTypeInt) => ResultTypeInt
+      case (ResultTypeBool, ResultTypeBool, ResultTypeBool) => ResultTypeBool
+      case (ResultTypeBool, ResultTypeInt, ResultTypeInt) => ResultTypeInt
       case _ => ResultTypeError
     }
   }
